@@ -1,0 +1,12 @@
+<decorators defaultdir="/WEB-INF/decorators">
+
+    <excludes>
+        <pattern>/backend/index.html*</pattern>
+        <pattern>/backend/questionform.html*</pattern>
+        <pattern>/backend/previewexamination.html*</pattern>
+    </excludes>
+
+    <decorator name="main" page="main.jsp">
+        <pattern>/backend/*</pattern>
+    </decorator>
+</decorators>
