@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/vot_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:background="@drawable/background01" >
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="15dip"
+            android:src="@drawable/logoscn"/>
+    <RelativeLayout
+            android:layout_width="600dip"
+            android:layout_height="400dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bkg_m">
+        <TextView
+                android:id="@+id/destextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/FONT_SIZE_BIG"/>
+    </RelativeLayout>
+    <Button
+            android:id="@+id/button1"
+            android:layout_width="130dip"
+            android:layout_height="80dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="400dip"
+            android:background="@drawable/btn_ok_selector"/>
+</RelativeLayout>
