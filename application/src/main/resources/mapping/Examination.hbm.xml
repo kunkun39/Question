@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+
+    <class name="com.changhong.system.domain.AppDescription" table="app_description">
+        <cache usage="read-write"/>
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="timestamp" column="timestamp" type="java.util.Date"/>
+        <property name="description" column="description" insert="true" update="true" type="java.lang.String"/>
+    </class>
+
+    <class name="com.changhong.system.domain.Examination" table="examination">
+        <cache usage="read-write"/>
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="timestamp" column="timestamp" type="java.util.Date"/>
+        <property name="title" column="title" insert="true" update="true" type="java.lang.String"/>
+        <property name="description" column="description" insert="true" update="true" type="java.lang.String"/>
+        <property name="published" column="published" insert="true" update="true" type="java.lang.Boolean"/>
+
+        <bag name="questions" table="question" cascade="none" lazy="true" order-by="sequence asc">
+            <key column="examination_id"/>
+            <one-to-many class="com.changhong.system.domain.Question"/>
+        </bag>
+    </class>
+
+    <class name="com.changhong.system.domain.Question" table="question">
+        <cache usage="read-write"/>
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="timestamp" column="timestamp" type="java.util.Date"/>
+        <property name="sequence" column="sequence" insert="true" update="true" type="java.lang.Integer"/>
+        <property name="title" column="title" insert="true" update="true" type="java.lang.String"/>
+
+        <many-to-one name="examination" column="examination_id" class="com.changhong.system.domain.Examination" lazy="proxy" insert="true" update="true" cascade="none"/>
+
+        <property name="questionType" column="question_type">
+            <type name="com.changhong.common.domain.EnumConverter">
+                <param name="enumClassName">com.changhong.system.domain.QuestionType</param>
+            </type>
+        </property>
+
+        <bag name="answers" table="answer" cascade="all" lazy="true" order-by="sequence asc">
+            <key column="question_id"/>
+            <one-to-many class="com.changhong.system.domain.Answer"/>
+        </bag>
+    </class>
+
+    <class name="com.changhong.system.domain.Answer" table="answer">
+        <cache usage="read-write"/>
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="timestamp" column="timestamp" type="java.util.Date"/>
+        <property name="sequence" column="sequence" insert="true" update="true" type="java.lang.String"/>
+        <property name="result" column="result" insert="true" update="true" type="java.lang.String"/>
+        <property name="answerTimes" column="answer_times" insert="true" update="true" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>
