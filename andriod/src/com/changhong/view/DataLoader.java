@@ -33,6 +33,7 @@ public class DataLoader {
             Question question = questions.get(i);
             item = new VoteSubmitItem();
             item.itemId = i;
+            item.questiontype = question.getQuestionType();
 
             item.voteQuestion = "问题" + question.getSequence() + ": " + question.getTitle();
             List<Answer> answers = question.getAnswers();

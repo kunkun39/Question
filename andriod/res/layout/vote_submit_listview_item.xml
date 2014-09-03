@@ -6,19 +6,25 @@
     android:orientation="horizontal"
     android:padding="5dp" >
 
-    <ImageView
-        android:id="@+id/vote_submit_select_image"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/vote_submit_normal" />
-    <TextView
+    <CheckBox
         android:id="@+id/vote_submit_select_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="您给出的回答选项"
-       android:textSize="@dimen/FONT_SIZE_BIG"
-        android:textColor="@color/black" />
+        android:textSize="@dimen/FONT_SIZE_BIG"
+        android:textColor="@color/black"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+    <TextView
+            android:id="@+id/vote_questiontype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+    </TextView>
     <TextView
         android:id="@+id/vote_question_index"
         android:layout_width="wrap_content"

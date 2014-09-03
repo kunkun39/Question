@@ -12,7 +12,32 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/FONT_SIZE_NORMAL"
             android:text="&lt;川网问卷调查>" />
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/vote_submit_relative"
+            android:layout_below="@+id/vote_submit_title"
+            android:layout_margin="15dp"
+            android:background="@drawable/vote_submit_bg"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
+        <TextView
+                android:id="@+id/vote_submit_question"
+                style="@style/vote_submit_question"
+                android:textSize="@dimen/FONT_SIZE_BIG"
+                android:text="你需要调查的问题？" />
+
+        <ListView
+                android:id="@+id/vote_submit_listview"
+                style="@style/vote_submit_listview"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+
+        </ListView>
+        <requestFocus />
+    </LinearLayout>
     <RelativeLayout
             android:id="@+id/vote_submit_relative"
             android:layout_width="fill_parent"
@@ -58,27 +83,5 @@
                     android:src="@drawable/vote_submit_arrow_next" />
         </LinearLayout>
     </RelativeLayout>
-
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/vote_submit_relative"
-            android:layout_below="@+id/vote_submit_title"
-            android:layout_margin="15dp"
-            android:background="@drawable/vote_submit_bg"
-            android:orientation="vertical"
-            android:padding="10dp" >
-
-        <TextView
-                android:id="@+id/vote_submit_question"
-                style="@style/vote_submit_question"
-                android:textSize="@dimen/FONT_SIZE_BIG"
-                android:text="你需要调查的问题？" />
-
-        <ListView
-                android:id="@+id/vote_submit_listview"
-                style="@style/vote_submit_listview">
-        </ListView>
-    </LinearLayout>
 
 </RelativeLayout>

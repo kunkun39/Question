@@ -25,6 +25,7 @@ import com.changhong.activity.QuestionListActivity;
 import com.changhong.activity.VoteListActivity;
 import com.changhong.activity.VoteSubmitActivity;
 import com.changhong.domain.Examination;
+import com.changhong.domain.QuestionType;
 import com.changhong.service.HttpClientService;
 import com.changhong.service.PreferenceService;
 
@@ -36,12 +37,6 @@ public class VoteSubmitAdapter extends PagerAdapter {
      * 保存设置的Service
      */
     private PreferenceService preferenceService;
-
-    /**
-     * 每一道题选择的答案
-     */
-    private Map<Integer, Set<String>> selected = new HashMap<Integer, Set<String>>();
-
     /**
      * 总共问题的数目
      */
@@ -81,6 +76,11 @@ public class VoteSubmitAdapter extends PagerAdapter {
      * 主线程处理
      */
     private Handler handler;
+    /*
+    问题类型
+    */
+    private QuestionType questiontype;
+
 
     public VoteSubmitAdapter(VoteSubmitActivity context, Examination examination, List<View> viewItems, ArrayList<VoteSubmitItem> dataItems) {
         /**
@@ -116,14 +116,33 @@ public class VoteSubmitAdapter extends PagerAdapter {
         holder.nextBtn = (LinearLayout) convertView.findViewById(R.id.vote_submit_linear_next);
         holder.nextText = (TextView) convertView.findViewById(R.id.vote_submit_next_text);
         holder.previousText = (TextView) convertView.findViewById(R.id.vote_submit_previous_text);
-
         holder.nextImage = (ImageView) convertView.findViewById(R.id.vote_submit_next_image);
+        questiontype =  dataItems.get(questionIndex).questiontype;
+        String questiontype_string=null;
+        if(questiontype.equals(QuestionType.SINGLE))
+        {
+             questiontype_string="单选";
+        }
+        else
+        {
 
-        holder.title.setText("总共" + totalQuestions + "题，当前在" + (questionIndex + 1) + "题");
-        listAdapter = new VoteSubmitListAdapter(mContext, examination.getId(), questionIndex, dataItems.get(questionIndex).voteAnswers);
+             questiontype_string="多选";
+        }
+        holder.title.setText("总共" + totalQuestions + "题，当前在" + (questionIndex + 1) + "题" +"("+questiontype_string+")");
+
+        listAdapter = new VoteSubmitListAdapter(mContext, examination.getId(),questiontype,questionIndex, dataItems.get(questionIndex).voteAnswers);
         holder.question.setText(dataItems.get(questionIndex).voteQuestion);
+        questiontype =  dataItems.get(questionIndex).questiontype;
         holder.listView.setDividerHeight(0);
         holder.listView.setAdapter(listAdapter);
+        if(questiontype.equals(QuestionType.SINGLE))
+        {
+        holder.listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        }
+        else
+        {
+            holder.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        }
         holder.listView.setOnItemClickListener(new ListViewOnClickListener(listAdapter));
 
         // 第一页隐藏"上一步"按钮
@@ -152,7 +171,6 @@ public class VoteSubmitAdapter extends PagerAdapter {
             holder.nextText.setText("提交");
             holder.nextImage.setImageResource(R.drawable.vote_submit_finish);
         }
-
         holder.nextBtn.setOnClickListener(new LinearOnClickListener(questionIndex + 1));
         container.addView(viewItems.get(questionIndex));
         return viewItems.get(questionIndex);
@@ -177,34 +195,31 @@ public class VoteSubmitAdapter extends PagerAdapter {
              * 设置更新选中项图片和文本变化
              */
             int currentQuestionIndex = Integer.valueOf(String.valueOf(answerItem.question_index.getText()));
-            boolean alreadySelected = false;
-            Set<String> answerSelected = selected.get(currentQuestionIndex);
+
+            Set<String> answerSelected = preferenceService.getAnswers(String.valueOf(examination.getId()), String.valueOf(currentQuestionIndex));;
             if (answerSelected == null) {
                 answerSelected = new HashSet<String>();
-                selected.put(currentQuestionIndex, answerSelected);
             }
             String answerIndexStr = String.valueOf(answerIndex);
             if (!answerSelected.contains(answerIndexStr)) {
+                if((answerItem.question_type.getText()).equals("SINGLE")){
+                answerSelected.clear();}
                 answerSelected.add(answerIndexStr);
             } else {
                 answerSelected.remove(answerIndexStr);
-                alreadySelected = true;
-            }
 
+
+            }
+            answerItem.select_text.toggle();
             /**
              * 缓存答案
              */
+
             preferenceService.saveAnswers(String.valueOf(examination.getId()), String.valueOf(currentQuestionIndex), answerSelected);
 
-            /**
-             * 更新选中的状态
-             */
-            if (!alreadySelected) {
-                answerItem.select_image.setImageResource(R.drawable.vote_checkbox_select);
-                answerItem.select_text.setTextColor(mContext.getResources().getColor(R.color.black));
-            } else {
-                answerItem.select_image.setImageResource(R.drawable.vote_checkbox_unselect);
-                answerItem.select_text.setTextColor(mContext.getResources().getColor(R.color.black));
+            if((answerItem.question_type.getText().equals("SINGLE"))&&(answerSelected.contains(answerIndexStr)))
+            {
+                mContext.setCurrentView(currentQuestionIndex + 1);
             }
         }
     }
@@ -266,7 +281,6 @@ public class VoteSubmitAdapter extends PagerAdapter {
                                      * 清楚这次选择的结果
                                      */
                                     preferenceService.cleanAllAnswers(examination);
-                                    selected = new HashMap<Integer, Set<String>>();
                                     listAdapter.cleanAnswer();
 
                                     /**
@@ -342,6 +356,7 @@ public class VoteSubmitAdapter extends PagerAdapter {
         TextView previousText;
 
         ImageView nextImage;
+
     }
 
 }

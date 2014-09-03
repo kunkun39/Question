@@ -17,7 +17,7 @@ public class HttpClientService {
 
 //   private static String HOSTS = "http://192.168.155.1:8080/";
 
-    private static boolean LOCAL = true;
+    private static boolean LOCAL = false;
 
     public static String getWelcomePageResponse() {
         if (LOCAL) {
@@ -31,7 +31,7 @@ public class HttpClientService {
 
     public static String getExaminationById(int examinationId) {
         if (LOCAL) {
-            return "{\"id\":6,\"title\":\"川网问卷调查（二） \",\"description\":\"\",\"questions\":[{\"sequence\":1,\"examinationType\":\"SINGLE\",\"title\":\"你家里面有几个人呢一？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]},{\"sequence\":2,\"examinationType\":\"SINGLE\",\"title\":\"你家里面有几个人呢二？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]},{\"sequence\":3,\"examinationType\":\"SINGLE\",\"title\":\"你家里面有几个人呢三？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]}]}";
+            return "{\"id\":6,\"title\":\"川网问卷调查（二） \",\"description\":\"\",\"questions\":[{\"sequence\":1,\"questionType\":\"MUTI\",\"title\":\"你家里面有几个人呢一？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]},{\"sequence\":2,\"questionType\":\"SINGLE\",\"title\":\"你家里面有几个人呢二？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]},{\"sequence\":3,\"questionType\":\"SINGLE\",\"title\":\"你家里面有几个人呢三？\",\"answers\":[{\"result\":\"A:1\"},{\"result\":\"B:2\"},{\"result\":\"C:3\"},{\"result\":\"D:>3\"}]}]}";
         }
 
         String url = HOSTS + "faq/ott/getexamination.html?examinationId=" + examinationId;

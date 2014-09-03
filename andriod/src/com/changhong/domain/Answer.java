@@ -1,11 +1,12 @@
 package com.changhong.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by Jack Wang
  */
-public class Answer {
+public class Answer implements Serializable {
 
     private int id;
 
