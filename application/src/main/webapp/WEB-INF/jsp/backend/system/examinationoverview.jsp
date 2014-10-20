@@ -34,7 +34,8 @@
                 <thead>
                 <td width="5%">&nbsp;&nbsp;编号</td>
                 <td width="10%">创建时间</td>
-                <td width="63%">标题</td>
+                <td width="10%">应用范围</td>
+                <td width="53%">标题</td>
                 <td width="10%">状态</td>
                 <td>操作</td>
                 </thead>
@@ -46,6 +47,14 @@
                     <c:set var="turns" value="${!turns}"/>
                         <td>&nbsp;&nbsp;${examination.id}</td>
                         <td>${examination.createTime}</td>
+                        <td>
+                            <c:if test="${examination.examinationType == 'BOTH'}">
+                                应用于手机和电视
+                            </c:if>
+                            <c:if test="${examination.examinationType == 'TVBOX_ONLY'}">
+                                只应用于电视
+                            </c:if>
+                        </td>
                         <td>${examination.title} </td>
                         <td>
                             <c:if test="${examination.published}">

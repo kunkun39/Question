@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,24 +30,24 @@ public class ClientServiceImpl implements ClientService {
 
     private Map<Integer, JsonObject> examinationCache = new HashMap<Integer, JsonObject>();
 
-    private JsonObject welcome;
+    private Map<String, JsonObject> listCache = new HashMap<String, JsonObject>();
 
     public void cleanExaminationCache(int examinationId) {
         examinationCache.remove(examinationId);
-        welcome = null;
+        listCache.clear();
     }
 
-    public JsonObject obtainExaminationList() throws Exception {
+    public JsonObject obtainExaminationList(String examinationType) throws Exception {
         //先试着从缓存中去拿, 保证系统系能
-        if (welcome != null) {
-            return welcome;
+        if (listCache.get(examinationType) != null) {
+            return listCache.get(examinationType);
         }
 
-        welcome = new JsonObject();
+        JsonObject welcome = new JsonObject();
         AppDescription appDescription = clientDao.loadAppDescription();
         welcome.addProperty("appDescription", appDescription.getDescription());
 
-        List<Examination> examinations = clientDao.loadExaminationCategories();
+        List<Examination> examinations = clientDao.loadExaminationCategories(examinationType);
         JsonArray jExaminations = new JsonArray();
         for (Examination examination : examinations) {
             JsonObject jExamination = new JsonObject();
@@ -58,6 +57,7 @@ public class ClientServiceImpl implements ClientService {
             jExaminations.add(jExamination);
         }
         welcome.add("categories", jExaminations);
+        listCache.put(examinationType, welcome);
         return welcome;
     }
 

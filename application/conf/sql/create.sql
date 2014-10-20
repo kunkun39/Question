@@ -26,7 +26,8 @@ CREATE TABLE `examination` (
   `id` int(11) NOT NULL auto_increment,
   `timestamp` timestamp default CURRENT_TIMESTAMP,
   `title` varchar(255) default '',
-  `rule` text,
+  `description` text,
+  `examination_type` varchar(10) default 'TVBOX_ONLY',
   `published` tinyint(1) default '0' COMMENT '1 for YES or 0 for NO',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

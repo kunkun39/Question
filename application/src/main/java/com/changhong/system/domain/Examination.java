@@ -20,15 +20,18 @@ public class Examination extends EntityBase {
 
     private boolean published;
 
+    private ExaminationType examinationType;
+
     private List<Question> questions;
 
     public Examination() {
     }
 
-    public Examination(String title, String description) {
+    public Examination(String title, String description, String examinationType) {
         this.title = title;
         this.description = description;
         this.published = false;
+        this.examinationType = ExaminationType.valueOf(examinationType);
     }
 
     public int getQuestionSize() {
@@ -74,19 +77,27 @@ public class Examination extends EntityBase {
         this.description = description;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
     public boolean isPublished() {
         return published;
     }
 
     public void setPublished(boolean published) {
         this.published = published;
+    }
+
+    public ExaminationType getExaminationType() {
+        return examinationType;
+    }
+
+    public void setExaminationType(ExaminationType examinationType) {
+        this.examinationType = examinationType;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }

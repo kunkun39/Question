@@ -27,9 +27,14 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         return getHibernateTemplate().get(AppDescription.class, 1);
     }
 
-    public List<Examination> loadExaminationCategories() {
+    public List<Examination> loadExaminationCategories(String examinationType) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        Query query = session.createQuery("from Examination e where e.published = true order by e.timestamp desc");
+        Query query = null;
+        if ("BOTH".equals(examinationType)) {
+            query = session.createQuery("from Examination e where e.published = true order by e.timestamp desc");
+        } else {
+            query = session.createQuery("from Examination e where e.published = true and e.examinationType = 'TVBOX_ONLY' order by e.timestamp desc");
+        }
 
         List<Examination> examinations = query.list();
         return examinations;

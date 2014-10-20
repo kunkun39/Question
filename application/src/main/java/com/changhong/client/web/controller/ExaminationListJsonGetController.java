@@ -2,6 +2,7 @@ package com.changhong.client.web.controller;
 
 import com.changhong.client.service.ClientService;
 import com.google.gson.JsonObject;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -19,7 +20,9 @@ public class ExaminationListJsonGetController extends AbstractController {
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        JsonObject o = clientService.obtainExaminationList();
+        String examinationType = ServletRequestUtils.getStringParameter(request, "type", "TVBOX_ONLY");
+
+        JsonObject o = clientService.obtainExaminationList(examinationType);
 
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(o.toString());

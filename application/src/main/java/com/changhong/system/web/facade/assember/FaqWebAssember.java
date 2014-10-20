@@ -5,6 +5,7 @@ import com.changhong.common.utils.CHDateUtils;
 import com.changhong.common.utils.JodaUtils;
 import com.changhong.system.domain.Answer;
 import com.changhong.system.domain.Examination;
+import com.changhong.system.domain.ExaminationType;
 import com.changhong.system.domain.Question;
 import com.changhong.system.web.facade.dto.AnswerDTO;
 import com.changhong.system.web.facade.dto.ExaminationDTO;
@@ -28,9 +29,10 @@ public class FaqWebAssember {
             examination = (Examination) EntityLoadHolder.getUserDao().findById(examinationDTO.getId(), Examination.class);
             examination.setTitle(examinationDTO.getTitle());
             examination.setDescription(examinationDTO.getDescription());
+            examination.setExaminationType(ExaminationType.valueOf(examinationDTO.getExaminationType()));
 
         } else {
-            examination = new Examination(examinationDTO.getTitle(), examinationDTO.getDescription());
+            examination = new Examination(examinationDTO.getTitle(), examinationDTO.getDescription(), examinationDTO.getExaminationType());
         }
         return examination;
     }
@@ -41,8 +43,9 @@ public class FaqWebAssember {
         final String description = examination.getDescription();
         String createTime = JodaUtils.toFullString(examination.getTimestamp());
         final boolean published = examination.isPublished();
+        final String examinationType = examination.getExaminationType().name();
 
-        ExaminationDTO dto =  new ExaminationDTO(id, title, description, createTime, published);
+        ExaminationDTO dto =  new ExaminationDTO(id, title, description, createTime, published, examinationType);
         return dto;
     }
 

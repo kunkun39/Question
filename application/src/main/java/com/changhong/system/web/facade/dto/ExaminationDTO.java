@@ -20,17 +20,20 @@ public class ExaminationDTO {
 
     private boolean published;
 
+    private String examinationType;
+
     private List<QuestionDTO> questions;
 
     public ExaminationDTO() {
     }
 
-    public ExaminationDTO(int id, String title, String description, String createTime, boolean published) {
+    public ExaminationDTO(int id, String title, String description, String createTime, boolean published, String examinationType) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.createTime = createTime;
         this.published = published;
+        this.examinationType = examinationType;
     }
 
     public void addQuestion(QuestionDTO question) {
@@ -78,6 +81,14 @@ public class ExaminationDTO {
 
     public void setPublished(boolean published) {
         this.published = published;
+    }
+
+    public String getExaminationType() {
+        return examinationType;
+    }
+
+    public void setExaminationType(String examinationType) {
+        this.examinationType = examinationType;
     }
 
     public List<QuestionDTO> getQuestions() {

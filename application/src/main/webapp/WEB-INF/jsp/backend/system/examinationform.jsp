@@ -36,6 +36,19 @@
                             <spring-form:errors path="title" cssClass="required"/>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td width="200px;">
+                             问卷使用范围 <span class="required">*</span>
+                        </td>
+                        <td>
+                            <select name="examinationType" style="width: 310px; height: 30px">
+                                <option value="BOTH" <c:if test="${examination.examinationType == 'BOTH'}">selected="true"</c:if>>应用于手机和电视</option>
+                                <option value="TVBOX_ONLY" <c:if test="${examination.examinationType == 'TVBOX_ONLY'}">selected="true"</c:if>>只应用于电视</option>
+                            </select>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td width="200px;" valign="top">
                              问卷说明

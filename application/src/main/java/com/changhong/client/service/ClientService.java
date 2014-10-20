@@ -11,7 +11,7 @@ public interface ClientService {
 
     void cleanExaminationCache(int examinationId);
 
-    JsonObject obtainExaminationList() throws Exception;
+    JsonObject obtainExaminationList(String examinationType) throws Exception;
 
     JsonObject obtainExaminationById(int examinationId)  throws Exception;
 

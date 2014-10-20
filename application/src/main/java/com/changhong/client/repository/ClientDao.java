@@ -15,7 +15,7 @@ public interface ClientDao extends EntityObjectDao {
 
     AppDescription loadAppDescription();
 
-    List<Examination> loadExaminationCategories();
+    List<Examination> loadExaminationCategories(String examinationType);
 
     Examination loadLatestExamination(int examinationId);
 

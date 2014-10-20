@@ -24,6 +24,12 @@
         <property name="description" column="description" insert="true" update="true" type="java.lang.String"/>
         <property name="published" column="published" insert="true" update="true" type="java.lang.Boolean"/>
 
+        <property name="examinationType" column="examination_type">
+            <type name="com.changhong.common.domain.EnumConverter">
+                <param name="enumClassName">com.changhong.system.domain.ExaminationType</param>
+            </type>
+        </property>
+
         <bag name="questions" table="question" cascade="none" lazy="true" order-by="sequence asc">
             <key column="examination_id"/>
             <one-to-many class="com.changhong.system.domain.Question"/>
