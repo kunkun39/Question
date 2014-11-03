@@ -26,6 +26,8 @@ public class Question extends EntityBase {
 
     private List<Answer> answers;
 
+    private List<ObjectiveAnswer> objectiveAnswers;
+
     public Question() {
     }
 
@@ -52,6 +54,13 @@ public class Question extends EntityBase {
         answers.add(answer);
     }
 
+    public void addObjectiveAnswer(ObjectiveAnswer answer) {
+        if (objectiveAnswers == null) {
+            objectiveAnswers = new ArrayList<ObjectiveAnswer>();
+        }
+        objectiveAnswers.add(answer);
+    }
+
     public void updateSelection(String sequence, String result) {
         if (answers != null) {
             for (Answer answer : answers) {
@@ -67,16 +76,22 @@ public class Question extends EntityBase {
     }
 
     public void handleClientResultStatistic(String answer) {
-        Set<String> selectionMapping = new HashSet<String>();
-        String[] selections = StringUtils.delimitedListToStringArray(answer, ",");
-        for (int i = 0; i < selections.length; i++) {
-            String selection = selections[i];
-            selectionMapping.add(selection);
-        }
+        if (questionType.equals(QuestionType.OBJECTIVE)) {
+            if (StringUtils.hasText(answer)) {
+                addObjectiveAnswer(new ObjectiveAnswer(answer));
+            }
+        } else {
+            Set<String> selectionMapping = new HashSet<String>();
+            String[] selections = StringUtils.delimitedListToStringArray(answer, ",");
+            for (int i = 0; i < selections.length; i++) {
+                String selection = selections[i];
+                selectionMapping.add(selection);
+            }
 
-        for (Answer loop : answers) {
-            if (selectionMapping.contains(loop.getSequence())) {
-                loop.handleClientResultStatistic();
+            for (Answer loop : answers) {
+                if (selectionMapping.contains(loop.getSequence())) {
+                    loop.handleClientResultStatistic();
+                }
             }
         }
     }
@@ -121,5 +136,13 @@ public class Question extends EntityBase {
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
+    }
+
+    public List<ObjectiveAnswer> getObjectiveAnswers() {
+        return objectiveAnswers;
+    }
+
+    public void setObjectiveAnswers(List<ObjectiveAnswer> objectiveAnswers) {
+        this.objectiveAnswers = objectiveAnswers;
     }
 }

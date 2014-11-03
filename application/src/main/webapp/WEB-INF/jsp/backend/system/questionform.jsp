@@ -19,21 +19,27 @@
         <input type="hidden" name="filterName" value="${filterName}"/>
         <input type="hidden" name="current" value="${current}"/>
 		<table >
+             <tr>
+                <td valign="top">问题类型:</td>
+                <td>
+                    <select id="questionType" name="questionType" style="width: 405px; height: 30px;">
+                        <option value="SINGLE" <c:if test="${question.questionType == 'SINGLE'}">selected="true"</c:if>>单选题</option>
+                        <option value="MUTI" <c:if test="${question.questionType == 'MUTI'}">selected="true"</c:if>>多选题</option>
+                        <option value="OBJECTIVE" <c:if test="${question.questionType == 'OBJECTIVE'}">selected="true"</c:if>>主观题</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    主观题不用填写选项内容
+                </td>
+            </tr>
+
 			<tr>
                 <td>问题名称:</td>
                 <td>
-                    <input type="text" id="title" name="title" value="${question.title}" style="width: 400px; height: 25px;"/>
+                    <input type="text" id="questionTitle" name="questionTitle" value="${question.title}" style="width: 400px; height: 25px;"/>
                 </td>
             </tr>
-            <tr>
-                <td>问题类型:</td>
-                <td>
-                    <select name="questionType" style="width: 400px; height: 25px;">
-                        <option value="SINGLE" <c:if test="${question.questionType == 'SINGLE'}">selected="true"</c:if>>单选</option>
-                        <option value="MUTI" <c:if test="${question.questionType == 'MUTI'}">selected="true"</c:if>>多选</option>
-                    </select>
-                </td>
-            </tr>
+
             <tr>
                 <td>选项A:</td>
                 <td>

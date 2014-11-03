@@ -3,7 +3,7 @@ package com.changhong.system.domain;
 import com.changhong.common.domain.EntityBase;
 
 /**
- * User: Jack Wang                                                                                                                                       h
+ * User: Jack Wang
  * Date: 14-7-21
  * Time: 上午9:51
  */

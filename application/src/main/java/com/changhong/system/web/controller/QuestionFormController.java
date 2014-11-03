@@ -31,7 +31,7 @@ public class QuestionFormController extends AbstractController {
         int examinationId = ServletRequestUtils.getIntParameter(request, "examinationId", -1);
 
         if ("save".equals(method)) {
-            String title = ServletRequestUtils.getStringParameter(request, "title", "");
+            String title = ServletRequestUtils.getStringParameter(request, "questionTitle", "");
             String questionType = ServletRequestUtils.getStringParameter(request, "questionType", "SINGLE");
             String ASelection = ServletRequestUtils.getStringParameter(request, "ASelection", "");
             String BSelection = ServletRequestUtils.getStringParameter(request, "BSelection", "");

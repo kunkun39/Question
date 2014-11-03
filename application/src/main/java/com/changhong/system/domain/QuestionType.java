@@ -6,8 +6,10 @@ package com.changhong.system.domain;
  * Time: 下午1:32
  */
 public enum QuestionType {
-
+    //单选题
     SINGLE,
-
-    MUTI
+    //多选题
+    MUTI,
+    //客观题
+    OBJECTIVE
 }

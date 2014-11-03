@@ -57,6 +57,11 @@
             <key column="question_id"/>
             <one-to-many class="com.changhong.system.domain.Answer"/>
         </bag>
+
+        <bag name="objectiveAnswers" table="objective_answer" cascade="all" lazy="true">
+            <key column="question_id"/>
+            <one-to-many class="com.changhong.system.domain.ObjectiveAnswer"/>
+        </bag>
     </class>
 
     <class name="com.changhong.system.domain.Answer" table="answer">
@@ -68,5 +73,14 @@
         <property name="sequence" column="sequence" insert="true" update="true" type="java.lang.String"/>
         <property name="result" column="result" insert="true" update="true" type="java.lang.String"/>
         <property name="answerTimes" column="answer_times" insert="true" update="true" type="java.lang.Integer"/>
+    </class>
+
+    <class name="com.changhong.system.domain.ObjectiveAnswer" table="objective_answer">
+        <cache usage="read-write"/>
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="result" column="result" insert="true" update="true" type="java.lang.String"/>
+        <many-to-one name="question" column="question_id" class="com.changhong.system.domain.Question" lazy="proxy" insert="true" update="true" cascade="none"/>
     </class>
 </hibernate-mapping>

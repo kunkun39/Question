@@ -52,13 +52,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="${jdbc.driverClassName}"/>-->
-        <!--<property name="url" value="${jdbc.url}"/>-->
-        <!--<property name="username" value="${jdbc.username}"/>-->
-        <!--<property name="password" value="${jdbc.password}"/>-->
-    <!--</bean>-->
-
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource">
             <ref local="dataSource"/>
@@ -110,4 +103,27 @@
         <aop:advisor advice-ref="serviceTxAdvice" pointcut-ref="serviceOperations"/>
     </aop:config>
 
+    <!--Message Queue-->
+
+    <!-- 配置connectionFactory -->
+    <!--<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">-->
+        <!--<property name="connectionFactory">-->
+            <!--<bean class="org.apache.activemq.ActiveMQConnectionFactory">-->
+                <!--<property name="brokerURL">-->
+                    <!--<value>tcp://127.0.0.1:61616</value>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</property>-->
+        <!--<property name="maxConnections" value="100"></property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; Spring JMS Template &ndash;&gt;-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">-->
+        <!--<property name="connectionFactory">-->
+            <!--<ref local="jmsFactory" />-->
+        <!--</property>-->
+        <!--<property name="defaultDestinationName" value="subject" />-->
+        <!--&lt;!&ndash; 区别它采用的模式为false是p2p为true是订阅 &ndash;&gt;-->
+        <!--<property name="pubSubDomain" value="true" />-->
+    <!--</bean>-->
 </beans>

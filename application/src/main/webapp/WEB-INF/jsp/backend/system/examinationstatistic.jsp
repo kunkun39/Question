@@ -46,8 +46,14 @@
                         <c:forEach items="${questions}" var="question">
                             <tr class="r2">
                                 <c:set var="turns" value="${!turns}"/>
-                                <td colspan="2">&nbsp;&nbsp;问题${question.sequence}:${question.title}</td>
+                                <td colspan="2">
+                                    &nbsp;&nbsp;问题${question.sequence}:${question.title}
+                                    <c:if test="${question.questionType == 'OBJECTIVE'}">
+                                        <input type="button" value="查看" onclick=""/>
+                                    </c:if>
+                                </td>
                             </tr>
+
                             <c:forEach items="${question.answers}" var="answer">
                                 <c:if test="${answer.result != null && answer.result != ''}">
                                 <tr>
@@ -66,6 +72,12 @@
                                 </c:if>
                             </c:forEach>
                         </c:forEach>
+
+                    <tr class="r1">
+                        <td colspan="2">
+                            &nbsp;&nbsp;
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </c:if>

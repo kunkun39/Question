@@ -94,6 +94,7 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         //第五步
         Examination examination = (Examination) getHibernateTemplate().find("from Examination e where e.id = " + examinationId).get(0);
         examination.handleClientResultStatistic(answers);
+        saveOrUpdate(examination);
 
         long end = System.currentTimeMillis();
         long during = end - start;

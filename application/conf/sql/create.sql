@@ -1,6 +1,5 @@
 SET FOREIGN_KEY_CHECKS=0;
 
--- 系统模块
 DROP TABLE IF EXISTS `system_user`;
 CREATE TABLE `system_user` (
   `id` int(11) NOT NULL auto_increment,
@@ -20,6 +19,8 @@ CREATE TABLE `app_description` (
   `description` text,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 
 DROP TABLE IF EXISTS `examination`;
 CREATE TABLE `examination` (
@@ -56,6 +57,17 @@ CREATE TABLE `answer` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+DROP TABLE IF EXISTS `objective_answer`;
+CREATE TABLE `objective_answer` (
+  `id` int(11) NOT NULL auto_increment,
+  `timestamp` timestamp default CURRENT_TIMESTAMP,
+  `result` text,
+  `question_id` int(11) default NULL,
+  FOREIGN KEY (`question_id`) REFERENCES question (`id`),
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 
 DROP TABLE IF EXISTS `client_info`;
 CREATE TABLE `client_info` (
@@ -71,7 +83,7 @@ CREATE TABLE `client_result` (
   `id` int(11) NOT NULL auto_increment,
   `timestamp` timestamp default CURRENT_TIMESTAMP,
   `mac_address` varchar(17) default '',
-  `result` varchar(100) default '',
+  `result` text,
   `examination_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

@@ -107,10 +107,13 @@
                                 <td>${question.sequence}</td>
                                 <td>
                                     <c:if test="${question.questionType == 'MUTI'}">
-                                        多选
+                                        多选题
                                     </c:if>
                                     <c:if test="${question.questionType == 'SINGLE'}">
-                                        单选
+                                        单选题
+                                    </c:if>
+                                    <c:if test="${question.questionType == 'OBJECTIVE'}">
+                                        客观题
                                     </c:if>
                                 </td>
                                 <td>${question.title}</td>
@@ -159,13 +162,22 @@
 	}
 
     function saveQuestionForm() {
-        var title = jQuery("#title").val();
-        var ASelection = jQuery("#ASelection").val();
-        var BSelection = jQuery("#BSelection").val();
-        if(title == null || title == '' || ASelection == null || ASelection == '' || BSelection == null || BSelection == '') {
-            alert("请填入必要的信息!");
+        var questionType = jQuery("#questionType").val();
+        var questionTitle = jQuery("#questionTitle").val();
+        if(questionType != 'OBJECTIVE') {
+            var ASelection = jQuery("#ASelection").val();
+            var BSelection = jQuery("#BSelection").val();
+            if(questionTitle == null || questionTitle == '' || ASelection == null || ASelection == '' || BSelection == null || BSelection == '') {
+                alert("请填入必要的信息!");
+            } else {
+                jQuery("#questionForm").submit();
+            }
         } else {
-            jQuery("#questionForm").submit();
+            if(questionTitle == null || questionTitle == '') {
+                alert("请填入必要的信息!");
+            } else {
+                jQuery("#questionForm").submit();
+            }
         }
     }
 
