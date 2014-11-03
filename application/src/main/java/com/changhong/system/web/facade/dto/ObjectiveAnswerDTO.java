@@ -13,22 +13,15 @@ import java.util.List;
  */
 public class ObjectiveAnswerDTO {
 
-    private  QuestionDTO questionDTO;
+
 
     private  String result;
 
-    public ObjectiveAnswerDTO(QuestionDTO questionDTO,  String result) {
-        this.questionDTO = questionDTO;
+    public ObjectiveAnswerDTO(String result) {
+
         this.result = result;
     }
 
-    public QuestionDTO getQuestionDTO() {
-        return questionDTO;
-    }
-
-    public void setQuestionDTO(QuestionDTO questionDTO) {
-        this.questionDTO = questionDTO;
-    }
 
     public String getResult() {
         return result;

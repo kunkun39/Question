@@ -17,7 +17,7 @@ public class ExaminationJsonHandleControllerTest extends TestCase {
         PostMethod method = new PostMethod("http://localhost:8080/faq/ott/getexaminationlist.html");
 //        PostMethod method = new PostMethod("http://www.ottserver.com:8081/faq/ott/getexaminationlist.html");
         String s = httpPostRequest(method);
-        System.out.println(s);
+        System.out.println("----->"+s);
     }
 
 
@@ -25,9 +25,9 @@ public class ExaminationJsonHandleControllerTest extends TestCase {
         JsonObject o = new JsonObject();
         o.addProperty("mac", "QA:WD:ER:ED:ED:EB");
         o.addProperty("examinationId", "1");
-        o.addProperty("answers", "D|B|C|A,B|C");
-//        PostMethod method = new PostMethod("http://localhost:8080/faq/ott/sendexamination.html");
-        PostMethod method = new PostMethod("http://www.ottserver.com:8081/faq/ott/sendexamination.html");
+        o.addProperty("answers", "B|D|B|我超级爱你飞份丰富和废话费诶返回而非诶腹黑菲菲EiffelEiffel额");
+        PostMethod method = new PostMethod("http://localhost:8080/faq/ott/sendexamination.html");
+//        PostMethod method = new PostMethod("http://www.ottserver.com:8081/faq/ott/sendexamination.html");
         method.addParameter("result", o.toString());
         String s = httpPostRequest(method);
     }

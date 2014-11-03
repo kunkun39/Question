@@ -19,7 +19,7 @@
         <td valign="top">
             <table  width="100%" cellpadding="0" cellspacing="0" class="list">
                <thead>
-               <td width="50%"> 问题:${objectiveAnswerList.get(0).questionDTO.title}  </td>
+               <td width="50%"> 问题:${questionDTO.title} </td>
                <td width="50%"></td>
                </thead>
 

@@ -137,9 +137,7 @@ public class FaqWebAssember {
 
     public static ObjectiveAnswerDTO toObjectiveAnswerDTO(ObjectiveAnswer objectiveAnswer) {
         final String result = objectiveAnswer.getResult();
-        final Question question = objectiveAnswer.getQuestion();
-        QuestionDTO questionDTO = FaqWebAssember.toQuestionStaDTO(question);
-        ObjectiveAnswerDTO dto = new ObjectiveAnswerDTO(questionDTO, result);
+        ObjectiveAnswerDTO dto = new ObjectiveAnswerDTO(result);
         return dto;
     }
 

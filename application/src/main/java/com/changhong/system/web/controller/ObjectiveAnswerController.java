@@ -2,8 +2,10 @@ package com.changhong.system.web.controller;
 
 import com.changhong.common.web.session.SessionKey;
 import com.changhong.system.domain.ObjectiveAnswer;
+import com.changhong.system.domain.Question;
 import com.changhong.system.service.FaqService;
 import com.changhong.system.web.facade.dto.ObjectiveAnswerDTO;
+import com.changhong.system.web.facade.dto.QuestionDTO;
 import com.changhong.system.web.paging.ObjectiveAnswerOverViewPaging;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +37,8 @@ public class ObjectiveAnswerController extends AbstractController {
         ObjectiveAnswerOverViewPaging paging = new ObjectiveAnswerOverViewPaging(faqService);
         constructPaging(paging, current, questionId);
         List<ObjectiveAnswerDTO> objectiveAnswerList = paging.getItems();
-
+        QuestionDTO questionDTO=faqService.obtainQuestionById(questionId);
+        model.put("questionDTO",questionDTO);
         model.put("paging", paging);
         model.put("objectiveAnswerList", objectiveAnswerList);
         return new ModelAndView("backend/system/objectiveansweroverview", model);
