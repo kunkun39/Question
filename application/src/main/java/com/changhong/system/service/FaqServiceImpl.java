@@ -1,13 +1,11 @@
 package com.changhong.system.service;
 
 import com.changhong.client.service.ClientService;
-import com.changhong.system.domain.AppDescription;
-import com.changhong.system.domain.Examination;
-import com.changhong.system.domain.Question;
-import com.changhong.system.domain.QuestionType;
+import com.changhong.system.domain.*;
 import com.changhong.system.repository.FaqDao;
 import com.changhong.system.web.facade.assember.FaqWebAssember;
 import com.changhong.system.web.facade.dto.ExaminationDTO;
+import com.changhong.system.web.facade.dto.ObjectiveAnswerDTO;
 import com.changhong.system.web.facade.dto.QuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -117,6 +115,10 @@ public class FaqServiceImpl implements FaqService {
         return FaqWebAssember.toQuestionDTOStaList(questions);
     }
 
+    public int obtainClientResultSize(int exminationId){
+        return faqDao.loadClientResultSize(exminationId);
+    }
+
     public void changeQuestionSequence(int examinationId, int sequence, String sorting) {
         Question wangToChangQuestion = faqDao.loadQuestionBySequence(examinationId, sequence);
         Question needToChangQuestion = null;
@@ -141,5 +143,14 @@ public class FaqServiceImpl implements FaqService {
     public void changeAppDescriptionDetails(AppDescription appDescription) {
         faqDao.saveOrUpdate(appDescription);
         clientService.cleanExaminationCache(-1);
+    }
+
+    public List<ObjectiveAnswerDTO> obtainObjectiveAnswers(int questionId, int startPosition, int pageSize) {
+        List<ObjectiveAnswer> list= faqDao.loadObjectiveAnswers(questionId,startPosition,pageSize);
+        return FaqWebAssember.toObjectiveAnswerDTOList(list);
+    }
+
+    public int obtainObjectiveAnswersSize(int questionId) {
+        return faqDao.loadObjectiveAnswersSize(questionId);
     }
 }

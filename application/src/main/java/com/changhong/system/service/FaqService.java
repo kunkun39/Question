@@ -3,6 +3,7 @@ package com.changhong.system.service;
 
 import com.changhong.system.domain.AppDescription;
 import com.changhong.system.web.facade.dto.ExaminationDTO;
+import com.changhong.system.web.facade.dto.ObjectiveAnswerDTO;
 import com.changhong.system.web.facade.dto.QuestionDTO;
 
 import java.util.List;
@@ -36,9 +37,16 @@ public interface FaqService {
 
     List<QuestionDTO> obtainQuestionsByExaminationIdForSta(int examinationId);
 
+    int obtainClientResultSize(int examinationId);
+
     void changeQuestionSequence(int examinationId, int sequence, String sorting);
 
     AppDescription obtainAppDescription();
 
     void changeAppDescriptionDetails(AppDescription appDescription);
+
+    List<ObjectiveAnswerDTO> obtainObjectiveAnswers(int questionId, int startPosition, int pageSize);
+
+    int obtainObjectiveAnswersSize(int questionId);
+
 }

@@ -1,14 +1,11 @@
 package com.changhong.system.web.facade.assember;
 
 import com.changhong.common.repository.EntityLoadHolder;
-import com.changhong.common.utils.CHDateUtils;
 import com.changhong.common.utils.JodaUtils;
-import com.changhong.system.domain.Answer;
-import com.changhong.system.domain.Examination;
-import com.changhong.system.domain.ExaminationType;
-import com.changhong.system.domain.Question;
+import com.changhong.system.domain.*;
 import com.changhong.system.web.facade.dto.AnswerDTO;
 import com.changhong.system.web.facade.dto.ExaminationDTO;
+import com.changhong.system.web.facade.dto.ObjectiveAnswerDTO;
 import com.changhong.system.web.facade.dto.QuestionDTO;
 
 import java.util.ArrayList;
@@ -23,7 +20,7 @@ public class FaqWebAssember {
 
     public static Examination toExaminationDomain(ExaminationDTO examinationDTO) {
         Examination examination = null;
-        if(examinationDTO == null) return null;
+        if (examinationDTO == null) return null;
 
         if (examinationDTO.getId() > 0) {
             examination = (Examination) EntityLoadHolder.getUserDao().findById(examinationDTO.getId(), Examination.class);
@@ -45,7 +42,7 @@ public class FaqWebAssember {
         final boolean published = examination.isPublished();
         final String examinationType = examination.getExaminationType().name();
 
-        ExaminationDTO dto =  new ExaminationDTO(id, title, description, createTime, published, examinationType);
+        ExaminationDTO dto = new ExaminationDTO(id, title, description, createTime, published, examinationType);
         return dto;
     }
 
@@ -65,7 +62,7 @@ public class FaqWebAssember {
         final String title = question.getTitle();
         final String questionType = question.getQuestionType().name();
 
-        QuestionDTO dto =  new QuestionDTO(id, sequence, title, questionType);
+        QuestionDTO dto = new QuestionDTO(id, sequence, title, questionType);
         if (addAnswer) {
             List<Answer> answers = question.getAnswers();
             if (addAnswer && answers != null) {
@@ -92,11 +89,13 @@ public class FaqWebAssember {
         final String sequence = answer.getSequence();
         final String result = answer.getResult();
 
-        AnswerDTO dto =  new AnswerDTO(id, sequence, result);
+        AnswerDTO dto = new AnswerDTO(id, sequence, result);
         return dto;
     }
 
-    /****************************************统计时用***************************************************/
+    /**
+     * *************************************统计时用**************************************************
+     */
 
     public static List<QuestionDTO> toQuestionDTOStaList(List<Question> questions) {
         List<QuestionDTO> dtos = new ArrayList<QuestionDTO>();
@@ -114,7 +113,7 @@ public class FaqWebAssember {
         final String title = question.getTitle();
         final String questionType = question.getQuestionType().name();
 
-        QuestionDTO dto =  new QuestionDTO(id, sequence, title, questionType);
+        QuestionDTO dto = new QuestionDTO(id, sequence, title, questionType);
         List<Answer> answers = question.getAnswers();
         if (answers != null) {
             for (Answer answer : answers) {
@@ -132,7 +131,25 @@ public class FaqWebAssember {
         final String result = answer.getResult();
         final int answerTimes = answer.getAnswerTimes();
 
-        AnswerDTO dto =  new AnswerDTO(id, sequence, result, answerTimes);
+        AnswerDTO dto = new AnswerDTO(id, sequence, result, answerTimes);
         return dto;
+    }
+
+    public static ObjectiveAnswerDTO toObjectiveAnswerDTO(ObjectiveAnswer objectiveAnswer) {
+        final String result = objectiveAnswer.getResult();
+        final Question question = objectiveAnswer.getQuestion();
+        QuestionDTO questionDTO = FaqWebAssember.toQuestionStaDTO(question);
+        ObjectiveAnswerDTO dto = new ObjectiveAnswerDTO(questionDTO, result);
+        return dto;
+    }
+
+    public static List<ObjectiveAnswerDTO> toObjectiveAnswerDTOList(List<ObjectiveAnswer> answers) {
+        List<ObjectiveAnswerDTO> dtos = new ArrayList<ObjectiveAnswerDTO>();
+        if (answers != null) {
+            for (ObjectiveAnswer answer : answers) {
+                dtos.add(toObjectiveAnswerDTO(answer));
+            }
+        }
+        return dtos;
     }
 }

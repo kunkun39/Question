@@ -43,6 +43,7 @@
                 <prop key="/backend/examinationoverview.html">examinationManagementController</prop>
                 <prop key="/backend/examinationform.html">examinationFormController</prop>
                 <prop key="/backend/examinationpublished.html">examinationPublishedController</prop>
+                <prop key="/backend/objectiveansweroverview.html">objectiveAnswerController</prop>
                 <prop key="/backend/questionform.html">questionFormController</prop>
                 <prop key="/backend/questiondelete.html">questionDeleteController</prop>
                 <prop key="/backend/questionsequencechange.html">questionSequenceChangeController</prop>
@@ -84,7 +85,7 @@
     <bean id="appDescriptionFormController" class="com.changhong.system.web.controller.AppDescriptionFormController">
         <property name="faqService" ref="faqService"/>
     </bean>
-    
+
     <bean id="examinationPreviewController" class="com.changhong.system.web.controller.ExaminationPreviewController">
         <property name="faqService" ref="faqService"/>
     </bean>
@@ -102,6 +103,10 @@
     </bean>
 
     <bean id="questionFormController" class="com.changhong.system.web.controller.QuestionFormController">
+        <property name="faqService" ref="faqService"/>
+    </bean>
+
+    <bean id="objectiveAnswerController" class="com.changhong.system.web.controller.ObjectiveAnswerController">
         <property name="faqService" ref="faqService"/>
     </bean>
 

@@ -40,16 +40,23 @@
                 </div>
             </form>
 
+
             <c:if test="${questions != null}">
+
                 <table width="100%" cellpadding="0" cellspacing="0" class="list">
                     <tbody>
-                        <c:forEach items="${questions}" var="question">
+                    <thead>
+                    <td width="50%">&nbsp;&nbsp;一共有${clientResultSize}人参加了此问卷调查</td>
+                    <td width="50%"></td>
+                    </thead>
+
+                  <c:forEach items="${questions}" var="question">
                             <tr class="r2">
                                 <c:set var="turns" value="${!turns}"/>
                                 <td colspan="2">
                                     &nbsp;&nbsp;问题${question.sequence}:${question.title}
                                     <c:if test="${question.questionType == 'OBJECTIVE'}">
-                                        <input type="button" value="查看" onclick=""/>
+                                        <input type="button" value="查看" onclick="window.location.href='${pageContext.request.contextPath}/backend/objectiveansweroverview.html?questionId=${question.id}&current=${current}'"/>
                                     </c:if>
                                 </td>
                             </tr>

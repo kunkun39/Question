@@ -33,6 +33,9 @@ public class ExaminationStatisticController extends AbstractController {
         if (examinationId > 0) {
             List<QuestionDTO> questions = faqService.obtainQuestionsByExaminationIdForSta(examinationId);
             model.put("questions", questions);
+
+            int clientResultSize = faqService.obtainClientResultSize(examinationId);
+            model.put("clientResultSize",Integer.valueOf(clientResultSize));
         }
 
         return new ModelAndView("backend/system/examinationstatistic", model);
