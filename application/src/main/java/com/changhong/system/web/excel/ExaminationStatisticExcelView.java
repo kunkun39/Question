@@ -66,9 +66,17 @@ public class ExaminationStatisticExcelView extends AbstractJExcelView {
 
         int j = 2;
         for (QuestionDTO question : questions) {
+             if (question.getQuestionType().trim().equals("SINGLE")){
+                    question.setTitle(question.getTitle()+"（单选题）");
+                }
+             if (question.getQuestionType().trim().equals("MUTI")){
+                    question.setTitle(question.getTitle()+"（多选题）");
+                }
+             if (question.getQuestionType().trim().equals("OBJECTIVE")){
+                    question.setTitle(question.getTitle()+"（主观题）");
+                }
             sheet.addCell(new Label(0, j, "问题" + question.getSequence() + ":" + question.getTitle(), CELL_TITLE));
             j++;
-
             for (AnswerDTO answer : question.getAnswers()) {
                 if (StringUtils.hasText(answer.getResult())) {
                     sheet.addCell(new Label(0, j, answer.getAnswer(), CELL_CONTENT));

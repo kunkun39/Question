@@ -54,7 +54,21 @@
                             <tr class="r2">
                                 <c:set var="turns" value="${!turns}"/>
                                 <td colspan="2">
-                                    &nbsp;&nbsp;问题${question.sequence}:${question.title}
+
+                                      <c:if test="${question.questionType=='SINGLE'}" >
+                                         &nbsp;&nbsp;问题${question.sequence}:${question.title}(单选题)
+                                    </c:if>
+
+
+                                    <c:if test="${question.questionType=='MUTI'}" >
+                                         &nbsp;&nbsp;问题${question.sequence}:${question.title}(多选题)
+                                    </c:if>
+                                    <c:if test="${question.questionType=='OBJECTIVE'}">
+                                         &nbsp;&nbsp;问题${question.sequence}:${question.title}(主观题)
+                                    </c:if>
+
+
+
                                     <c:if test="${question.questionType == 'OBJECTIVE'}">
                                         <input type="button" value="查看" onclick="window.location.href='${pageContext.request.contextPath}/backend/objectiveansweroverview.html?questionId=${question.id}&current=${current}'"/>
                                     </c:if>
