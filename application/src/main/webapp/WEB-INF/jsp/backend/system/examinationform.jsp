@@ -78,7 +78,7 @@
                         <td width="5%">编号</td>
                         <td width="8%">类型</td>
                         <td width="30%">问题</td>
-                        <td width="40%">答案</td>
+                        <td width="35%">答案</td>
                         <td>操作</td>
                     </thead>
                     <tbody>
@@ -113,7 +113,7 @@
                                         单选题
                                     </c:if>
                                     <c:if test="${question.questionType == 'OBJECTIVE'}">
-                                        客观题
+                                        主观题
                                     </c:if>
                                 </td>
                                 <td>${question.title}</td>

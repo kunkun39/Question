@@ -24,6 +24,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ObjectiveAnswerController extends AbstractController {
+
     private FaqService faqService;
 
     @Override
@@ -37,8 +38,9 @@ public class ObjectiveAnswerController extends AbstractController {
         ObjectiveAnswerOverViewPaging paging = new ObjectiveAnswerOverViewPaging(faqService);
         constructPaging(paging, current, questionId);
         List<ObjectiveAnswerDTO> objectiveAnswerList = paging.getItems();
-        QuestionDTO questionDTO=faqService.obtainQuestionById(questionId);
-        model.put("questionDTO",questionDTO);
+        QuestionDTO questionDTO = faqService.obtainQuestionById(questionId);
+
+        model.put("question", questionDTO);
         model.put("paging", paging);
         model.put("objectiveAnswerList", objectiveAnswerList);
         return new ModelAndView("backend/system/objectiveansweroverview", model);

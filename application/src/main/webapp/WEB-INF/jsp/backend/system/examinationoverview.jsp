@@ -35,7 +35,7 @@
                 <td width="5%">&nbsp;&nbsp;编号</td>
                 <td width="10%">创建时间</td>
                 <td width="10%">应用范围</td>
-                <td width="53%">标题</td>
+                <td width="50%">标题</td>
                 <td width="10%">状态</td>
                 <td>操作</td>
                 </thead>

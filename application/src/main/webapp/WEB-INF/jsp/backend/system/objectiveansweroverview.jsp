@@ -15,18 +15,26 @@
         <td width="200" valign="top" style="background: #e8e8e8;border-right: 1px solid #CCC;">
             <jsp:include page="../examination.jsp"/>
         </td>
-
         <td valign="top">
-            <table  width="100%" cellpadding="0" cellspacing="0" class="list">
-               <thead>
-               <td width="50%"> 问题:${questionDTO.title} </td>
-               <td width="50%"></td>
-               </thead>
+            <form action="#" class="search_form" method="POST">
+                <div class="search">
+                    <span><label>问题:${question.title}</span>
+                </div>
+            </form>
 
-                  <tbody>
+            <table width="100%" cellpadding="0" cellspacing="0" class="list">
+                <thead>
+                <td width="10%">&nbsp;&nbsp;编号</td>
+                <td width="50%">回答</td>
+                </thead>
+
+                <tbody>
+                <c:set var="turns" value="true"/>
                 <c:forEach items="${objectiveAnswerList}" var="objectiveAnswer" varStatus="varStatus">
-                    <tr>
-                        <td>${varStatus.index+1}</td>
+                    <c:set var="color" value="${turns ? 'r1' :'r2'}"/>
+                    <tr class="${color}" onmouseover="this.className='over'" onmouseout="this.className='${color}'">
+                        <c:set var="turns" value="${!turns}"/>
+                        <td>&nbsp;&nbsp;${varStatus.count}</td>
                         <td>&nbsp;&nbsp;${objectiveAnswer.result}</td>
                     </tr>
                 </c:forEach>
@@ -34,9 +42,9 @@
             </table>
 
             <div class="paging">
-                <ch:paging urlMapping="${pageContext.request.contextPath}/backend/objectiveansweroverview.html" showGoTo="false" paging="${paging}"/>
+                <ch:paging urlMapping="${pageContext.request.contextPath}/backend/objectiveansweroverview.html"
+                           showGoTo="false" paging="${paging}"/>
             </div>
-
         </td>
     </tr>
 </table>

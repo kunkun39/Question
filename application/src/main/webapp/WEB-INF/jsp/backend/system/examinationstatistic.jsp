@@ -70,7 +70,7 @@
 
 
                                     <c:if test="${question.questionType == 'OBJECTIVE'}">
-                                        <input type="button" value="查看" onclick="window.location.href='${pageContext.request.contextPath}/backend/objectiveansweroverview.html?questionId=${question.id}&current=${current}'"/>
+                                        <a target="_blank" href="${pageContext.request.contextPath}/backend/objectiveansweroverview.html?questionId=${question.id}&current=${current}"><input type="button" value="查看"/></a>
                                     </c:if>
                                 </td>
                             </tr>
