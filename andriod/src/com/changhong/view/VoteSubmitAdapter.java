@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.changhong.R;
 import com.changhong.activity.QuestionListActivity;
-import com.changhong.activity.VoteListActivity;
 import com.changhong.activity.VoteSubmitActivity;
 import com.changhong.domain.Examination;
 import com.changhong.domain.QuestionType;
@@ -153,9 +152,9 @@ public class VoteSubmitAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, QuestionListActivity.class);
-                    if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                    if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                     {
-                      VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                        QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                     }
                     mContext.startActivity(intent);
                 }
@@ -247,15 +246,15 @@ public class VoteSubmitAdapter extends PagerAdapter {
                  */
                 final String allAnswers = preferenceService.getAllAnswers(examination);
                 if (allAnswers.equals("")) {
-                    if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                    if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                     {
-                        VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                        QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                     }
                     Toast.makeText(mContext, "请填写完所有的问题，谢谢!", Toast.LENGTH_SHORT).show();
                 } else {
-                    if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                    if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                     {
-                        VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                        QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                     }
                     String result = preferenceService.getAllAnswersShow(examination);
                     Dialog dialog = new AlertDialog.Builder(mContext)
@@ -272,9 +271,9 @@ public class VoteSubmitAdapter extends PagerAdapter {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
-                                    if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                                    if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                                     {
-                                        VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                                        QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                                     }
 
                                     /**
@@ -313,9 +312,9 @@ public class VoteSubmitAdapter extends PagerAdapter {
                     dialog.getWindow().setAttributes(layoutParams);
                 }
             } else {
-                if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                 {
-                    VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                    QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                 }
                 mContext.setCurrentView(mPosition);
             }

@@ -13,9 +13,9 @@ import org.apache.commons.httpclient.methods.PostMethod;
  */
 public class HttpClientService {
 
-    private static String HOSTS = "http://www.ottserver.com:8081/";
+//    private static String HOSTS = "http://www.ottserver.com:8081/";
 
-//   private static String HOSTS = "http://192.168.155.1:8080/";
+   private static String HOSTS = "http://10.9.46.110:8080/";
 
     private static boolean LOCAL = false;
 

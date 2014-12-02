@@ -51,11 +51,10 @@ public class VoteRuleActivity extends Activity {
         SysApplication.getInstance().addActivity(this);
 
         initView();
+
         initData();
+
         initEvent();
-
-
-
     }
 
     private void initView() {
@@ -91,9 +90,9 @@ public class VoteRuleActivity extends Activity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
-                                    if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                                    if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                                     {
-                                        VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                                        QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                                     }
                                     SysApplication.getInstance().exit();
 
@@ -116,9 +115,9 @@ public class VoteRuleActivity extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("examination", examination);
                 ruleIntent.putExtras(bundle);
-                if(VoteListActivity.sp!=null&&VoteListActivity.music>0)
+                if(QuestionListActivity.sp!=null&&QuestionListActivity.music>0)
                 {
-                    VoteListActivity.sp.play(VoteListActivity.music, 1, 1, 0, 0, 1);
+                    QuestionListActivity.sp.play(QuestionListActivity.music, 1, 1, 0, 0, 1);
                 }
                 startActivity(ruleIntent);
             }
