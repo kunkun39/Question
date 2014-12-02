@@ -49,10 +49,10 @@
                         <td>${examination.createTime}</td>
                         <td>
                             <c:if test="${examination.examinationType == 'BOTH'}">
-                                应用于手机和电视
+                                只应用于手机助手
                             </c:if>
                             <c:if test="${examination.examinationType == 'TVBOX_ONLY'}">
-                                只应用于电视
+                                应用于手机助手和电视
                             </c:if>
                         </td>
                         <td>${examination.title} </td>

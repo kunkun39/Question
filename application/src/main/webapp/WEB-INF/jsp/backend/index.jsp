@@ -42,10 +42,18 @@
                             <br/>
                             <div class="error">
                                  <span style="color:red;font-size:12px;" class="error">
-                                    对不起,用户名或者密码不正确!
+                                    对不起, 用户名或者密码不正确!
                                  </span>
                             </div>
                         </c:if>
+                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION == null}">
+                            <br/>
+                            <br/>
+                            <br/>
+                        </c:if>
+                        <br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        提示建议使用FireFox或Chrome浏览器
                     </fieldset>
                 </form>
             </div>

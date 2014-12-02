@@ -43,9 +43,10 @@
                         </td>
                         <td>
                             <select name="examinationType" style="width: 310px; height: 30px">
-                                <option value="BOTH" <c:if test="${examination.examinationType == 'BOTH'}">selected="true"</c:if>>应用于手机和电视</option>
-                                <option value="TVBOX_ONLY" <c:if test="${examination.examinationType == 'TVBOX_ONLY'}">selected="true"</c:if>>只应用于电视</option>
+                                <option value="BOTH" <c:if test="${examination.examinationType == 'BOTH'}">selected="true"</c:if>>只应用于手机助手</option>
+                                <option value="TVBOX_ONLY" <c:if test="${examination.examinationType == 'TVBOX_ONLY'}">selected="true"</c:if>>应用于手机助手和电视</option>
                             </select>
+                            手机助手可以支持单选，多选和主观题，而电视只支持单选和多选题！
                         </td>
                     </tr>
 

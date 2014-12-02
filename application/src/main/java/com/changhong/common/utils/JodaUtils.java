@@ -323,7 +323,8 @@ public class JodaUtils {
      * @return
      */
     public static int getCurrentMonthTotalDays(int year, int month) {
-        LocalDate current = new LocalDate();
-        return new LocalDate(year, month + 1, 1).minusDays(1).getDayOfMonth();
+        String current = new LocalDate().toString("YYYY-MM");
+        LocalDate temp = new LocalDate(current + "-01").plusMonths(1).minusDays(1);
+        return temp.getDayOfMonth();
     }
 }
