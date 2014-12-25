@@ -3,6 +3,7 @@ package com.changhong.system.web.controller;
 import com.changhong.common.utils.JodaUtils;
 import com.changhong.system.service.FaqService;
 import com.changhong.system.web.excel.ExaminationStatisticExcelView;
+import com.changhong.system.web.excel.POIExaminationStaticExcel;
 import com.changhong.system.web.facade.dto.ExaminationDTO;
 import com.changhong.system.web.facade.dto.QuestionDTO;
 import org.joda.time.LocalDate;
@@ -33,8 +34,8 @@ public class ExaminationStatisticDownloadController extends AbstractController {
         int examinationId = ServletRequestUtils.getIntParameter(request, "examinationId", -1);
         ExaminationDTO examination = faqService.obtainExaminationById(examinationId);
         List<QuestionDTO> questions = faqService.obtainQuestionsByExaminationIdForSta(examinationId);
-
-        ExaminationStatisticExcelView view = new ExaminationStatisticExcelView(examination, questions);
+        POIExaminationStaticExcel view=new POIExaminationStaticExcel(examination,questions);
+//        ExaminationStatisticExcelView view = new ExaminationStatisticExcelView(examination, questions);
         view.render(null, request, response);
 
         return null;
