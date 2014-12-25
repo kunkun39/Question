@@ -23,8 +23,8 @@ public class QuestionFormController extends AbstractController {
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        int current  = ServletRequestUtils.getIntParameter(request, "current", 1);
-        String filterName  = ServletRequestUtils.getStringParameter(request, "filterName", "");
+        int current = ServletRequestUtils.getIntParameter(request, "current", 1);
+        String filterName = ServletRequestUtils.getStringParameter(request, "filterName", "");
 
         String method = ServletRequestUtils.getStringParameter(request, "method");
         int questionId = ServletRequestUtils.getIntParameter(request, "questionId", -1);
@@ -37,8 +37,10 @@ public class QuestionFormController extends AbstractController {
             String BSelection = ServletRequestUtils.getStringParameter(request, "BSelection", "");
             String CSelection = ServletRequestUtils.getStringParameter(request, "CSelection", "");
             String DSelection = ServletRequestUtils.getStringParameter(request, "DSelection", "");
+            String ESelection = ServletRequestUtils.getStringParameter(request, "ESelection", "");
+            String FSelection = ServletRequestUtils.getStringParameter(request, "FSelection", "");
 
-            faqService.changeQuestionDetails(examinationId, questionType, questionId, title, ASelection, BSelection, CSelection, DSelection);
+            faqService.changeQuestionDetails(examinationId, questionType, questionId, title, ASelection, BSelection, CSelection, DSelection,ESelection,FSelection);
 
             return new ModelAndView(new RedirectView("examinationform.html?current=" + current + "&filterTitle=" + filterName + "&examinationId=" + examinationId));
         } else {
