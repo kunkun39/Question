@@ -35,10 +35,14 @@ public class QuestionDTO {
         AnswerDTO answerB = new AnswerDTO(-1, "B", "");
         AnswerDTO answerC = new AnswerDTO(-1, "C", "");
         AnswerDTO answerD = new AnswerDTO(-1, "D", "");
+        AnswerDTO answerE = new AnswerDTO(-1, "E", "");
+        AnswerDTO answerF = new AnswerDTO(-1, "F", "");
         addAnswer(answerA);
         addAnswer(answerB);
         addAnswer(answerC);
         addAnswer(answerD);
+        addAnswer(answerE);
+        addAnswer(answerF);
     }
 
     public QuestionDTO(int id, int sequence, String title, String questionType) {
@@ -110,12 +114,34 @@ public class QuestionDTO {
         }
         return "";
     }
+      public String getSelectionE() {
+        if (answers != null) {
+            for (AnswerDTO answer : answers) {
+                if (answer.getSequence().equals("E")) {
+                    return answer.getResult();
+                }
+            }
+        }
+        return "";
+    }
+      public String getSelectionF() {
+        if (answers != null) {
+            for (AnswerDTO answer : answers) {
+                if (answer.getSequence().equals("F")) {
+                    return answer.getResult();
+                }
+            }
+        }
+        return "";
+    }
 
     public void addTotalAnswerTimes(int answerTimes) {
         this.totalAnswerTimes = this.totalAnswerTimes + answerTimes;
     }
 
-    /********************************************************GETTER/SETTER********************************************/
+    /**
+     * *****************************************************GETTER/SETTER*******************************************
+     */
 
     public int getId() {
         return id;
