@@ -41,10 +41,14 @@ public class Question extends EntityBase {
         Answer answerB = new Answer("B", "");
         Answer answerC = new Answer("C", "");
         Answer answerD = new Answer("D", "");
+        Answer answerE = new Answer("E", "");
+        Answer answerF = new Answer("F", "");
         addAnswer(answerA);
         addAnswer(answerB);
         addAnswer(answerC);
         addAnswer(answerD);
+        addAnswer(answerE);
+        addAnswer(answerF);
     }
 
     public void addAnswer(Answer answer) {
@@ -72,7 +76,7 @@ public class Question extends EntityBase {
     }
 
     public void adjustSequence() {
-        this.sequence = this.sequence - 1;
+        int i = this.sequence = this.sequence - 1;
     }
 
     public void handleClientResultStatistic(String answer) {
