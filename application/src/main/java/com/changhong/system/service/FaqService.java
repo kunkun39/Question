@@ -31,7 +31,7 @@ public interface FaqService {
 
     QuestionDTO obtainQuestionById(int questionId);
 
-    void changeQuestionDetails(int examinationId, String questionType, int questionId, String title, String aSelection, String bSelection, String cSelection, String dSelection,String eSelection,String fSelection);
+    void changeQuestionDetails(int examinationId, String questionType, int questionId, String title, String aSelection, String bSelection, String cSelection, String dSelection,String eSelection,String fSelection,String gSelection);
 
     void deleteQuestion(int examinationId, int questionId);
 

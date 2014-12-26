@@ -39,8 +39,10 @@ public class QuestionFormController extends AbstractController {
             String DSelection = ServletRequestUtils.getStringParameter(request, "DSelection", "");
             String ESelection = ServletRequestUtils.getStringParameter(request, "ESelection", "");
             String FSelection = ServletRequestUtils.getStringParameter(request, "FSelection", "");
+            String GSelection = ServletRequestUtils.getStringParameter(request, "GSelection", "");
 
-            faqService.changeQuestionDetails(examinationId, questionType, questionId, title, ASelection, BSelection, CSelection, DSelection,ESelection,FSelection);
+
+            faqService.changeQuestionDetails(examinationId, questionType, questionId, title, ASelection, BSelection, CSelection, DSelection,ESelection,FSelection,GSelection);
 
             return new ModelAndView(new RedirectView("examinationform.html?current=" + current + "&filterTitle=" + filterName + "&examinationId=" + examinationId));
         } else {

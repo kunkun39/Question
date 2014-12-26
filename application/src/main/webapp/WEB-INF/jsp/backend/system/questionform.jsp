@@ -76,6 +76,13 @@
                     <input type="text" id="FSelection" name="FSelection" value="${question.selectionF}" style="width: 250px; height: 25px;"/>
                 </td>
             </tr>
+             <tr>
+                <td>选项G:</td>
+                <td>
+                    <input type="text" id="GSelection" name="GSelection" value="${question.selectionG}" style="width: 250px; height: 25px;"/>
+                </td>
+            </tr>
+
 			<tr>
                 <td></td>
                 <td><input type="button" value="保存" onclick="saveQuestionForm();"></td>

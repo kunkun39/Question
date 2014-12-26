@@ -43,12 +43,14 @@ public class Question extends EntityBase {
         Answer answerD = new Answer("D", "");
         Answer answerE = new Answer("E", "");
         Answer answerF = new Answer("F", "");
+        Answer answerG = new Answer("G", "");
         addAnswer(answerA);
         addAnswer(answerB);
         addAnswer(answerC);
         addAnswer(answerD);
         addAnswer(answerE);
         addAnswer(answerF);
+        addAnswer(answerG);
     }
 
     public void addAnswer(Answer answer) {

@@ -74,7 +74,7 @@ public class FaqServiceImpl implements FaqService {
         return FaqWebAssember.toQuestionDTO(question, true);
     }
 
-    public void changeQuestionDetails(int examinationId, String questionType, int questionId, String title, String aSelection, String bSelection, String cSelection, String dSelection,String eSelection,String fSelection) {
+    public void changeQuestionDetails(int examinationId, String questionType, int questionId, String title, String aSelection, String bSelection, String cSelection, String dSelection,String eSelection,String fSelection,String gSelection) {
         Question question = null;
         if(questionId > 0) {
             question = (Question) faqDao.findById(questionId, Question.class);
@@ -92,6 +92,7 @@ public class FaqServiceImpl implements FaqService {
         question.updateSelection("D", dSelection);
         question.updateSelection("E", eSelection);
         question.updateSelection("F", fSelection);
+        question.updateSelection("G", gSelection);
 
         faqDao.saveOrUpdate(question);
         clientService.cleanExaminationCache(examinationId);

@@ -37,12 +37,14 @@ public class QuestionDTO {
         AnswerDTO answerD = new AnswerDTO(-1, "D", "");
         AnswerDTO answerE = new AnswerDTO(-1, "E", "");
         AnswerDTO answerF = new AnswerDTO(-1, "F", "");
+        AnswerDTO answerG = new AnswerDTO(-1, "G", "");
         addAnswer(answerA);
         addAnswer(answerB);
         addAnswer(answerC);
         addAnswer(answerD);
         addAnswer(answerE);
         addAnswer(answerF);
+        addAnswer(answerG);
     }
 
     public QuestionDTO(int id, int sequence, String title, String questionType) {
@@ -128,6 +130,16 @@ public class QuestionDTO {
         if (answers != null) {
             for (AnswerDTO answer : answers) {
                 if (answer.getSequence().equals("F")) {
+                    return answer.getResult();
+                }
+            }
+        }
+        return "";
+    }
+   public String getSelectionG() {
+        if (answers != null) {
+            for (AnswerDTO answer : answers) {
+                if (answer.getSequence().equals("G")) {
                     return answer.getResult();
                 }
             }
