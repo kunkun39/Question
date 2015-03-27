@@ -1,4 +1,4 @@
-/* 
+/*
  * @description: 后台管理系统-登录页面样式
  * @author: wuzhibo 2014.07.29
  * @update:
@@ -7,10 +7,10 @@
 @charset "utf-8";
 
 body { background-color:#dfdfdf; }
-.login-box { width:763px; height:505px; margin:50px auto 0 auto; position:relative; background:url(../images/login_main_bg.jpg) no-repeat 0 0; }
-.login-form { float:right; width:260px; height:140px; padding:10px 20px 20px 20px; _display:inline; margin:170px 72px 0 0; }
+.login-box { width:100%; height:100%; position:absolute; background:url(../images/login_main_bg.jpg) no-repeat 250px 0; }
+.login-form { padding-left: 50%; padding-top:15%; }
 .login-form dl { overflow:hidden; zoom:1; padding:5px 0; }
-.login-form dl dt, .login-form dl dd { float:left; _display:inline; }
+.login-form dl dt, .login-form dl dd { float:left; display:inline; }
 .login-form dl dt { padding-top:3px;
     width: 48px;
 }
